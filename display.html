@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rugby Scoreboard - Display Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('images.jpeg'); /* Replace with your image URL or path */
+            background-size: cover;
+            background-position: center;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #000000;
+            font-size: 48px;
+        }
+
+        .team {
+            display: inline-block;
+            width: 40%;
+            margin: 20px;
+            background-color: rgba(44, 62, 80, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .team-logo {
+            width: 100px;
+            height: auto;
+        }
+
+        .team h2 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+
+        .team p {
+            font-size: 60px;
+            margin: 20px 0;
+        }
+
+        .time {
+            margin-top: 30px;
+        }
+
+        .time h2 {
+            font-size: 36px;
+        }
+
+        .time span {
+            font-size: 36px;
+            color: #f39c12;
+        }
+
+        .extra-time {
+            margin-top: 15px;
+            font-size: 28px;
+            color: #f1c40f;
+        }
+
+        .ad-banner {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(44, 62, 80, 0.8);
+            color: #f39c12;
+            font-size: 36px;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ad-banner span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scrollText 15s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Rugby Scoreboard</h1>
+
+    <div class="team" id="team1Display">
+        <img id="team1LogoDisplay" class="team-logo" alt="Team 1 Logo">
+        <h2 id="team1NameDisplay">Team 1</h2>
+        <p id="team1ScoreDisplay">0</p>
+    </div>
+
+    <div class="team" id="team2Display">
+        <img id="team2LogoDisplay" class="team-logo" alt="Team 2 Logo">
+        <h2 id="team2NameDisplay">Team 2</h2>
+        <p id="team2ScoreDisplay">0</p>
+    </div>
+
+    <div class="time">
+        <h2>Game Time: <span id="gameTimeDisplay">00:00</span></h2>
+        <div class="extra-time" id="extraTimeDisplay">+0</div>
+    </div>
+
+    <!-- Scrolling Ad Banner -->
+    <div class="ad-banner">
+        <span>SPONSOR AD GOES HERE</span>
+    </div>
+
+    <script>
+        // Function to apply saved team settings
+        function applyTeamSettings() {
+            // Team 1
+            const team1Name = localStorage.getItem('team1Name');
+            const team1FontSize = localStorage.getItem('team1FontSize');
+            const team1FontColor = localStorage.getItem('team1FontColor');
+            const team1Logo = localStorage.getItem('team1Logo');
+
+            if (team1Name) document.getElementById('team1NameDisplay').textContent = team1Name;
+            if (team1FontSize) document.getElementById('team1NameDisplay').style.fontSize = `${team1FontSize}px`;
+            if (team1FontColor) document.getElementById('team1NameDisplay').style.color = team1FontColor;
+            if (team1Logo) document.getElementById('team1LogoDisplay').src = team1Logo;
+
+            // Team 2
+            const team2Name = localStorage.getItem('team2Name');
+            const team2FontSize = localStorage.getItem('team2FontSize');
+            const team2FontColor = localStorage.getItem('team2FontColor');
+            const team2Logo = localStorage.getItem('team2Logo');
+
+            if (team2Name) document.getElementById('team2NameDisplay').textContent = team2Name;
+            if (team2FontSize) document.getElementById('team2NameDisplay').style.fontSize = `${team2FontSize}px`;
+            if (team2FontColor) document.getElementById('team2NameDisplay').style.color = team2FontColor;
+            if (team2Logo) document.getElementById('team2LogoDisplay').src = team2Logo;
+        }
+
+        // Apply team settings on page load
+        window.onload = applyTeamSettings;
+    </script>
+</body>
+</html>
